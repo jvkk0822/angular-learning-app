@@ -1,0 +1,106 @@
+<!--Component Lifecycle-->
+<div
+  class="panel panel-default">
+  <!--<div class="panel-heading">{{ element.name }}</div>-->
+  <div class="panel-heading" #heading>{{ name }}</div>
+  <div class="panel-body">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+  <div class="row col-xs-12">
+    <!--<button
+      class="btn btn-primary" (click)="onClickContactInfo()" [disabled]="!showInformation"> {{contactInfoStatus}}
+    </button>-->
+    <!--* is used as ngIF is a structural directive which changes DOM it creates hook and not created or hide**-->
+    <!-- Unlike Structural Directives attribute directive don't add or remove elements they only change the element they placed on-->
+    <hr>
+    <div *ngIf="showInformation; else noContactInfo">
+      <!--ngStyle and ngClass are used to dynamically change the css or add the new CSS class -->
+      <p [ngStyle]="{color: getContactStatus()}" [ngClass]="{showTrue: showInformation === true }">Showing My Contact Info:</p>
+      <p>Posted by: {{ myname }} </p>
+      <p>Contact information: <a href="mailto:{{ email }}">
+        {{ email }}</a></p>
+      <p>Mobile: {{ getMobileNumber() }}</p>
+      <!--ngFor is also the structural directive where mobil variable created and not used; index is like to sort
+      <p *ngFor="let mobil of mobiles; let i=index">Mobile: {{ getMobileNumber() }}</p>-->
+      <!--<p [innerText]="showInformation"> When to use string interpolation or {{showInformation}} the property binding-->
+      <!--<div app-servers></div>-->
+      <!--<div class="app-servers"></div>-->
+    </div>
+    <!--Added an id for an else condition-->
+    <ng-template #noContactInfo>
+      <!--background-color should keep inside '' or else should write in camelcase backgroundColor-->
+      <p [ngStyle]="{color: getContactStatus()}">I'm Hiding My Contact Info</p>
+      <hr>
+    </ng-template>
+  </div>
+</div>
+
+  <!--Bootstrap Class-->
+  <!--Passing and Using Data with Event Binding-->
+  <!--
+  <label>Passing and Using Data with Event Binding</label>
+  <input
+    type="text"
+    class="form-control"
+    (input)="onListeningInputTextEvent($event)">-->
+
+  <!--Two Way Binding where ngModel will take the input and listen event-->
+  <!--Important: For Two-Way-Binding to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.-->
+
+<div>
+  <p>Two Way Binding: {{ listeningInputEvent }}
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="listeningInputEvent"></p>
+</div>
+
+
+
+
+
+<!--Property and Event Binding in splitting the components-->
+<!--HTML Elements - Native properties and events
+Directives - Custom Properties and events like ngClass and ngModel
+Components - Custom Properties and events-->
+
+
+<!--Component Lifecycle-->
+<!--ngOnChanges - Called after a bound input property changes Eg: @Input
+ngOnInit - Called once the component is initialized i.e, once object created
+ngDoCheck - Called during every change detection run i.e typescript to html ifany change happens or any event listen
+ngAfterContentInit - Called after content (ngContent) has been projected into view like from parentcomponent to the child
+ngAfterContentChecked - Called every time the projected content has been checked
+ngAfterViewInit - Called after the component views(and child views) has been initialized - once our view has rendered
+ngAfterViewChecked - Called every time the view(and child views) have been checked
+ngOnDestroy - Called once the component is about to be destroyed
+-->
+
+<!--To generate the component: ng generate component name (or) ng g c path/name --spec false' wont create spec file, path is optional default will create under app-->
+<!--ng new project will create a new project-->
+<!--npm install --save bootstrap will install bootstrap in the project-->
+<!--Directives are instructions giving to DOM-->
+<!--Emmet Everywhere Plugin helpful for css and html-->
+<!--
+Angular2 Learning Course Structure:
+Getting STarted
+The Basics
+Components and DataBinding
+Directives
+Services and Dependency Injection
+Routing
+Observables
+Forms
+Pipes
+Http
+Authentication
+Optimizations and NgModules
+Deployment
+Animations and Testing
+-->
